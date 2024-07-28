@@ -115,6 +115,7 @@
 </head>
 <body>
     <div class="container">
+        <img src="profile.jpg" alt="Restaurant Guide" style="width:100%; border-radius: 5px; margin-bottom: 20px;">
         <h1>מדריך מסעדות לנשרים</h1>
         <p class="intro">
             הכירו את אפליקציית ביקורת המסעדות של נשרי יחיעם - הדרך הקלה למצוא מסעדות מעולות בקרבתנו. אנחנו, המייסדים - עידן ומתן, עם הטועמים הבכירים רפא וישי, ממליצים רק על מסעדות שנבדקו ונמצאו שוות ביקור.<br><br>
@@ -158,10 +159,14 @@
 
     <script>
         let restaurants = [
-            { id: 1, name: 'פיצה שווארמה', location: 'מעילייא', cleanliness: 5, taste: 5, price: 5, review: 'מקום מעולה!' },
-            { id: 2, name: 'חומוס חמודי', location: 'עכו', cleanliness: 5, taste: 5, price: 5, review: 'החומוס הכי טוב בארץ' },
-            { id: 3, name: 'מסעדת המנסף', location: 'ינוח-ג\'ת', cleanliness: 4, taste: 4, price: 4, review: 'אוכל מסורתי טעים' },
+            { id: 1, name: 'פיצה שווארמה ירושלים', location: 'מעילייא', cleanliness: 5, taste: 5, price: 4, review: 'פיצה שווארמת חזיר על בצק משובח!' },
+            { id: 2, name: 'חומוס חמודי', location: 'עכו', cleanliness: 4, taste: 5, price: 4, review: 'החומוס הכי טוב בארץ' },
+            { id: 3, name: 'מסעדת המנסף', location: 'ינוח-ג\'ת', cleanliness: 5, taste: 5, price: 3, review: 'אוכל מסורתי דרוזי  טעים' },
             { id: 4, name: 'שווארמה עוסאמה', location: 'מעילייא', cleanliness: 4, taste: 4, price: 4, review: 'שווארמה מצוינת' },
+			{ id: 5, name: 'נאסיב', location: 'כפר יאסיף', cleanliness: 4, taste: 3, price: 5, review: 'מסעדה ערבית שפותחת שולחן ובמחיר מצחיק' },
+            { id: 6, name: 'קולומבו', location: 'לוחמי הגטאות', cleanliness: 4, taste: 5, price: 3, review: 'מסעדת גורמה טובה מאוד- עם מחירים נוחים' },
+            { id: 7, name: 'מסעדת המנגל והשיפוד', location: 'מעיליא', cleanliness: 4, taste: 4, price: 3, review: 'מנגל טוב עם מבחר בשרים אך קצת יקר' },
+            { id: 8, name: 'חומוסיית הנוף', location: 'ינוח-ג\'ת', cleanliness: 4, taste: 4, price: 4, review: 'אחלה מסעדה ערבית עם מגוון מאכלים אוטנטיים' },
         ];
 
         function renderRestaurants() {
