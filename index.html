@@ -5,43 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מדריך מסעדות לנשרים</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@400;700&display=swap');
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+            padding: 0;
+            background-color: #f9f9f9;
         }
         .container {
             max-width: 800px;
             margin: auto;
             background: white;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #2c3e50;
+            font-family: 'Amatic SC', cursive;
+            font-size: 3em;
         }
         .intro {
             text-align: center;
-            color: #0066cc;
+            color: #2980b9;
             margin-bottom: 20px;
+            font-size: 1.2em;
         }
         .restaurant-item {
             background: #fff;
             border: 1px solid #ddd;
             padding: 15px;
             margin-bottom: 15px;
-            border-radius: 5px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
         }
         .restaurant-name {
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-weight: bold;
+            color: #e74c3c;
         }
         .restaurant-location {
-            color: #666;
+            color: #95a5a6;
         }
         .rating {
             display: flex;
@@ -60,15 +66,16 @@
             stroke: currentColor;
         }
         button {
-            background-color: #0066cc;
+            background-color: #e74c3c;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
+            font-size: 1em;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #c0392b;
         }
         .modal {
             display: none;
@@ -79,7 +86,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.5);
         }
         .modal-content {
             background-color: #fefefe;
@@ -88,7 +95,8 @@
             border: 1px solid #888;
             width: 80%;
             max-width: 500px;
-            border-radius: 5px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
         }
         .close {
             color: #aaa;
@@ -104,26 +112,35 @@
         }
         input, textarea {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin: 5px 0 15px;
             display: inline-block;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 5px;
             box-sizing: border-box;
+            font-size: 1em;
+        }
+        .intro strong {
+            display: block;
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+        .intro br {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="profile.jpg" alt="Restaurant Guide" style="width:100%; border-radius: 5px; margin-bottom: 20px;">
+        <img src="2024-07-28_15-35-00.jpg" alt="Restaurant Guide" style="width:100%; border-radius: 10px; margin-bottom: 20px;">
         <h1>מדריך מסעדות לנשרים</h1>
         <p class="intro">
-            הכירו את אפליקציית ביקורת המסעדות של נשרי יחיעם - הדרך הקלה למצוא מסעדות מעולות בקרבתנו. אנחנו, המייסדים - עידן ומתן, עם הטועמים הבכירים רפא וישי, ממליצים רק על מסעדות שנבדקו ונמצאו שוות ביקור.<br><br>
-            מה מייחד אותנו:<br>
-            <strong>• בחירה קפדנית</strong>: רק מסעדות שבאמת שווה להגיע אליהן.<br>
-            <strong>• תמורה לכסף</strong>: דגש על מסעדות עם ערך גבוה ביחס למחיר.<br>
-            <strong>• קרבה גאוגרפית</strong>: מסעדות באזור הקרוב אליכם.<br><br>
-            נא להוסיף רק מסעדות מומלצות, על סמך חוות דעת וניסיון אמיתי.
+            הכירו את אפליקציית ביקורת המסעדות של נשרי יחיעם - הדרך הקלה למצוא מסעדות מעולות בקרבתנו. אנחנו, המייסדים - עידן ומתן, עם הטועמים הבכירים רפא וישי, ממליצים רק על מסעדות שנבדקו ונמצאו שוות ביקור.<br>
+            <strong>מה מייחד אותנו:</strong>
+            <strong>• בחירה קפדנית:</strong> רק מסעדות שבאמת שווה להגיע אליהן.<br>
+            <strong>• תמורה לכסף:</strong> דגש על מסעדות עם ערך גבוה ביחס למחיר.<br>
+            <strong>• קרבה גאוגרפית:</strong> מסעדות באזור הקרוב אליכם.<br>
+            <br>נא להוסיף רק מסעדות מומלצות, על סמך חוות דעת וניסיון אמיתי.
         </p>
         <button onclick="openAddRestaurantForm()">הוסף מסעדה</button>
         <div id="restaurants-list"></div>
