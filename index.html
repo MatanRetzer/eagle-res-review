@@ -21,28 +21,54 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h1 {
+            text-align: center;
             color: #333;
         }
-        #restaurants-list {
-            margin-top: 20px;
+        .intro {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 20px;
         }
-        .restaurant {
-            background: #f9f9f9;
-            padding: 10px;
-            margin-bottom: 10px;
+        .restaurant-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
             border-radius: 5px;
         }
+        .restaurant-name {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .restaurant-location {
+            color: #666;
+        }
+        .rating {
+            display: flex;
+            margin: 10px 0;
+        }
+        .eagle-icon {
+            width: 20px;
+            height: 20px;
+            margin-left: 2px;
+        }
+        .filled {
+            fill: gold;
+        }
+        .unfilled {
+            fill: none;
+            stroke: currentColor;
+        }
         button {
-            background: #333;
-            color: #fff;
-            padding: 10px 15px;
+            background-color: #0066cc;
+            color: white;
             border: none;
-            border-radius: 4px;
+            padding: 10px 15px;
             cursor: pointer;
-            margin-top: 20px;
+            border-radius: 5px;
         }
         button:hover {
-            background: #444;
+            background-color: #0056b3;
         }
         .modal {
             display: none;
@@ -61,14 +87,14 @@
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-            max-width: 600px;
+            max-width: 500px;
+            border-radius: 5px;
         }
         .close {
             color: #aaa;
             float: left;
             font-size: 28px;
             font-weight: bold;
-            cursor: pointer;
         }
         .close:hover,
         .close:focus {
@@ -76,65 +102,138 @@
             text-decoration: none;
             cursor: pointer;
         }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>מדריך מסעדות לנשרים</h1>
-        
-        <p>
-            הכירו את אפליקציית ביקורת המסעדות של נשרי יחיעם - הדרך הקלה למצוא מסעדות
-            מעולות בקרבתנו. אנחנו, המייסדים - עידן ומתן, עם הטועמים הבכירים רפא
-            וישי, ממליצים רק על מסעדות שנבדקו ונמצאו שוות ביקור.
+        <p class="intro">
+            הכירו את אפליקציית ביקורת המסעדות של נשרי יחיעם - הדרך הקלה למצוא מסעדות מעולות בקרבתנו. אנחנו, המייסדים - עידן ומתן, עם הטועמים הבכירים רפא וישי, ממליצים רק על מסעדות שנבדקו ונמצאו שוות ביקור.<br><br>
+            מה מייחד אותנו:<br>
+            <strong>• בחירה קפדנית</strong>: רק מסעדות שבאמת שווה להגיע אליהן.<br>
+            <strong>• תמורה לכסף</strong>: דגש על מסעדות עם ערך גבוה ביחס למחיר.<br>
+            <strong>• קרבה גאוגרפית</strong>: מסעדות באזור הקרוב אליכם.<br><br>
+            נא להוסיף רק מסעדות מומלצות, על סמך חוות דעת וניסיון אמיתי.
         </p>
-        
-        <h2>מה מייחד אותנו:</h2>
-        <ul>
-            <li><strong>בחירה קפדנית</strong>: רק מסעדות שבאמת שווה להגיע אליהן.</li>
-            <li><strong>תמורה לכסף</strong>: דגש על מסעדות עם ערך גבוה ביחס למחיר.</li>
-            <li><strong>קרבה גאוגרפית</strong>: מסעדות באזור הקרוב אליכם.</li>
-        </ul>
-        
-        <p>נא להוסיף רק מסעדות מומלצות, על סמך חוות דעת וניסיון אמיתי.</p>
-        
-        <button id="addRestaurantBtn">הוסף מסעדה</button>
-        
+        <button onclick="openAddRestaurantForm()">הוסף מסעדה</button>
         <div id="restaurants-list"></div>
     </div>
 
     <div id="addRestaurantModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <iframe src="https://forms.gle/vvhZRfmuPMwhnimr7" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">טוען...</iframe>
+            <span class="close" onclick="closeAddRestaurantModal()">&times;</span>
+            <h2>הוסף מסעדה חדשה</h2>
+            <form id="addRestaurantForm">
+                <label for="name">שם המסעדה:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="location">מיקום:</label>
+                <input type="text" id="location" name="location" required>
+                
+                <label for="cleanliness">ניקיון (1-5):</label>
+                <input type="number" id="cleanliness" name="cleanliness" min="1" max="5" required>
+                
+                <label for="taste">טעם (1-5):</label>
+                <input type="number" id="taste" name="taste" min="1" max="5" required>
+                
+                <label for="price">מחיר (1-5):</label>
+                <input type="number" id="price" name="price" min="1" max="5" required>
+                
+                <label for="review">ביקורת:</label>
+                <textarea id="review" name="review" required></textarea>
+                
+                <button type="submit">הוסף מסעדה</button>
+            </form>
         </div>
     </div>
 
     <script>
-        // Get the modal
-        var modal = document.getElementById("addRestaurantModal");
+        let restaurants = [
+            { id: 1, name: 'פיצה שווארמה', location: 'מעילייא', cleanliness: 5, taste: 5, price: 5, review: 'מקום מעולה!' },
+            { id: 2, name: 'חומוס חמודי', location: 'עכו', cleanliness: 5, taste: 5, price: 5, review: 'החומוס הכי טוב בארץ' },
+            { id: 3, name: 'מסעדת המנסף', location: 'ינוח-ג\'ת', cleanliness: 4, taste: 4, price: 4, review: 'אוכל מסורתי טעים' },
+            { id: 4, name: 'שווארמה עוסאמה', location: 'מעילייא', cleanliness: 4, taste: 4, price: 4, review: 'שווארמה מצוינת' },
+        ];
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("addRestaurantBtn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-            modal.style.display = "block";
+        function renderRestaurants() {
+            const restaurantsList = document.getElementById('restaurants-list');
+            restaurantsList.innerHTML = '';
+            restaurants.forEach(restaurant => {
+                const averageRating = ((restaurant.cleanliness + restaurant.taste + restaurant.price) / 3).toFixed(1);
+                const restaurantElement = document.createElement('div');
+                restaurantElement.className = 'restaurant-item';
+                restaurantElement.innerHTML = `
+                    <div class="restaurant-name">${restaurant.name}</div>
+                    <div class="restaurant-location">${restaurant.location}</div>
+                    <div>ניקיון: ${renderRating(restaurant.cleanliness)}</div>
+                    <div>טעם: ${renderRating(restaurant.taste)}</div>
+                    <div>מחיר: ${renderRating(restaurant.price)}</div>
+                    <div><strong>דירוג כללי: ${renderRating(Number(averageRating))}</strong></div>
+                    <p><i>"${restaurant.review}"</i></p>
+                `;
+                restaurantsList.appendChild(restaurantElement);
+            });
         }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
+        function renderRating(rating) {
+            return `
+                <div class="rating">
+                    ${[1, 2, 3, 4, 5].map(star => `
+                        <svg class="eagle-icon ${star <= rating ? 'filled' : 'unfilled'}" viewBox="0 0 24 24">
+                            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
+                            <line x1="16" y1="8" x2="2" y2="22" />
+                            <line x1="17.5" y1="15" x2="9" y2="15" />
+                        </svg>
+                    `).join('')}
+                </div>
+            `;
         }
 
-        // When the user clicks anywhere outside of the modal, close it
+        function openAddRestaurantForm() {
+            window.open('https://forms.gle/vvhZRfmuPMwhnimr7', '_blank');
+        }
+
+        function openAddRestaurantModal() {
+            document.getElementById('addRestaurantModal').style.display = 'block';
+        }
+
+        function closeAddRestaurantModal() {
+            document.getElementById('addRestaurantModal').style.display = 'none';
+        }
+
+        document.getElementById('addRestaurantForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newRestaurant = {
+                id: Date.now(),
+                name: document.getElementById('name').value,
+                location: document.getElementById('location').value,
+                cleanliness: Number(document.getElementById('cleanliness').value),
+                taste: Number(document.getElementById('taste').value),
+                price: Number(document.getElementById('price').value),
+                review: document.getElementById('review').value
+            };
+            restaurants.push(newRestaurant);
+            renderRestaurants();
+            closeAddRestaurantModal();
+            this.reset();
+        });
+
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+            if (event.target == document.getElementById('addRestaurantModal')) {
+                closeAddRestaurantModal();
             }
         }
+
+        renderRestaurants();
     </script>
 </body>
 </html>
